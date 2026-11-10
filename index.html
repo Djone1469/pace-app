@@ -1,204 +1,41 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#101a19">
-<meta name="description" content="PACE — build your best self with daily movement, challenges and consistency.">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="icon.svg">
-<title>PACE — Build your best self</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101b19"><meta name="description" content="PACE — small daily wins, real progress.">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg">
+<title>PACE — Move with purpose</title>
 <style>
-:root{--bg:#101a19;--panel:#1b2925;--panel2:#24352e;--line:#34483e;--text:#f5f8f4;--muted:#a9b9af;--lime:#b8f36b;--lime-dark:#1a2b17;--orange:#ffb56b;--radius:20px}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-button,input{font:inherit}button{cursor:pointer}
-.app{max-width:520px;margin:0 auto;min-height:100svh;padding:env(safe-area-inset-top) 18px calc(92px + env(safe-area-inset-bottom))}
-header{display:flex;align-items:center;justify-content:space-between;padding:20px 0 24px}
-.brand{display:flex;align-items:center;gap:10px;font-size:23px;font-weight:900;letter-spacing:1.5px}
-.logo{height:38px;width:38px;border-radius:13px;background:var(--lime);color:#142014;display:grid;place-items:center;font-size:21px}
-.avatar{height:38px;width:38px;border-radius:50%;background:#30483a;color:var(--lime);display:grid;place-items:center;font-weight:800;border:1px solid #49634f}
-.eyebrow{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:1.5px;font-weight:700}
-h1{font-size:32px;line-height:1.08;letter-spacing:-1.2px;margin:8px 0}
-h2{font-size:20px;margin:0;letter-spacing:-.4px}h3{font-size:16px;margin:0}
-p{margin:5px 0;color:var(--muted)}
-.hero{padding:22px;border-radius:26px;background:linear-gradient(135deg,#263c2d,#172722);border:1px solid #3d5842;position:relative;overflow:hidden}
-.hero:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;background:#b8f36b12;right:-65px;top:-60px}
-.hero-top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
-.pill{border:1px solid #52684b;color:var(--lime);border-radius:99px;padding:5px 10px;font-size:11px;font-weight:800;letter-spacing:.7px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:22px;position:relative;z-index:1}
-.stat{background:#1020198a;border:1px solid #ffffff12;border-radius:15px;padding:12px 10px}
-.stat strong{display:block;font-size:23px;letter-spacing:-.7px}.stat span{font-size:11px;color:var(--muted)}
-.section{margin-top:25px}.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.progress-wrap{height:9px;background:#2d4037;border-radius:99px;overflow:hidden;margin-top:12px}
-.progress{height:100%;width:0;background:var(--lime);border-radius:99px;transition:width .25s}
-.goal-list{display:grid;gap:9px}
-.goal{display:flex;align-items:center;gap:13px;padding:14px;background:var(--panel);border:1px solid var(--line);border-radius:17px}
-.goal-icon{width:42px;height:42px;border-radius:13px;background:#2b4033;display:grid;place-items:center;font-size:21px;flex:none}
-.goal-info{flex:1;min-width:0}.goal-info strong{display:block;font-size:14px}.goal-info small{color:var(--muted);font-size:12px}
-.check{width:27px;height:27px;border-radius:50%;border:1.5px solid #718477;background:transparent;color:#162016;font-weight:900;flex:none}
-.check.done{background:var(--lime);border-color:var(--lime)}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:19px;padding:17px}
-.challenge{background:linear-gradient(135deg,#293d30,#1a2924);border-color:#405b42}
-.row{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.btn{border:0;border-radius:13px;padding:12px 16px;background:var(--lime);color:#142014;font-weight:850}
-.btn.secondary{background:#30443a;color:var(--text);border:1px solid var(--line)}
-.btn.full{width:100%}
-.btn:active,.nav button:active{transform:scale(.98)}
-.mini{font-size:12px;color:var(--muted)}
-.tabs{display:flex;gap:7px;background:#14211c;padding:5px;border:1px solid var(--line);border-radius:14px}
-.tabs button{flex:1;border:0;background:transparent;color:var(--muted);padding:9px 5px;border-radius:10px;font-size:12px;font-weight:750}
-.tabs button.active{background:var(--lime);color:#172117}
-.page{display:none}.page.active{display:block}
-.leader-row{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
-.rank{width:28px;color:var(--lime);font-weight:900}.person{flex:1}.person strong{display:block}.person small{color:var(--muted)}
-.score{font-weight:850;font-variant-numeric:tabular-nums}
-.you{background:#263b2b;border:1px solid #4b6843;border-radius:14px;padding:12px}
-.plus{background:linear-gradient(145deg,#283c2e,#1b2924);border:1px solid #60764b;border-radius:22px;padding:20px}
-.plus ul{padding-left:19px;color:var(--muted);line-height:2}
-input{width:100%;background:#101d18;border:1px solid var(--line);border-radius:12px;color:var(--text);padding:12px;outline:none}
-input:focus{border-color:var(--lime)}
-.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);display:flex;justify-content:space-around;gap:4px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:#111d19f2;backdrop-filter:blur(18px);border-top:1px solid var(--line);z-index:10}
-.nav button{flex:1;border:0;background:transparent;color:var(--muted);padding:7px 2px;font-size:10px;font-weight:750;display:grid;gap:4px;place-items:center}
-.nav button span{font-size:19px}.nav button.active{color:var(--lime)}
-.toast{position:fixed;left:50%;bottom:100px;transform:translate(-50%,15px);background:var(--lime);color:#172117;padding:10px 16px;border-radius:99px;font-weight:800;font-size:13px;opacity:0;pointer-events:none;transition:.2s;z-index:20;white-space:nowrap}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-footer{text-align:center;color:#75877b;font-size:11px;margin:30px 0 10px}
-@media(min-width:600px){body{padding:20px 0}.app{border:1px solid #293b33;border-radius:28px;min-height:calc(100svh - 40px);padding-bottom:35px}.nav{position:sticky;transform:none;left:auto;margin:-75px auto 0;border:1px solid var(--line);border-radius:18px;width:min(484px,calc(100% - 36px));bottom:15px}}
-</style>
-</head>
-<body>
-<div class="app">
-<header>
-  <div class="brand"><div class="logo">↗</div> PACE</div>
-  <div class="avatar" id="avatar">Y</div>
-</header>
-
-<main>
-<section class="page active" id="today">
-  <div class="hero">
-    <div class="hero-top"><div><div class="eyebrow" id="dateLabel">YOUR DAILY CHECK-IN</div><h1>Make today<br>count.</h1><p>Small wins. Big progress.</p></div><div class="pill">PACE CLUB</div></div>
-    <div class="stats">
-      <div class="stat"><strong id="streak">0 🔥</strong><span>DAY STREAK</span></div>
-      <div class="stat"><strong id="points">0</strong><span>TODAY'S POINTS</span></div>
-      <div class="stat"><strong id="completed">0/4</strong><span>GOALS DONE</span></div>
-    </div>
-    <div class="row" style="margin-top:19px"><strong style="font-size:13px">Daily progress</strong><strong id="percent" style="color:var(--lime)">0%</strong></div>
-    <div class="progress-wrap"><div class="progress" id="progress"></div></div>
-  </div>
-
-  <div class="section">
-    <div class="section-head"><h2>Today's goals</h2><span class="mini">25 PTS EACH</span></div>
-    <div class="goal-list" id="goalList">
-      <div class="goal"><div class="goal-icon">🏋️</div><div class="goal-info"><strong>Complete a workout</strong><small>Move for at least 30 minutes</small></div><button class="check" data-goal="workout" aria-label="Complete workout">✓</button></div>
-      <div class="goal"><div class="goal-icon">👟</div><div class="goal-info"><strong>Reach 8,000 steps</strong><small>Get moving throughout the day</small></div><button class="check" data-goal="steps" aria-label="Complete steps">✓</button></div>
-      <div class="goal"><div class="goal-icon">🧘</div><div class="goal-info"><strong>Stretch</strong><small>10 minutes of stretching</small></div><button class="check" data-goal="stretch" aria-label="Complete stretching">✓</button></div>
-      <div class="goal"><div class="goal-icon">💧</div><div class="goal-info"><strong>Hydration goal</strong><small>Reach your personal water goal</small></div><button class="check" data-goal="water" aria-label="Complete hydration">✓</button></div>
-    </div>
-  </div>
-  <div class="section card challenge">
-    <div class="row"><div><div class="eyebrow">THIS WEEK</div><h2 style="margin-top:5px">7-day consistency</h2></div><div style="font-size:28px">🏆</div></div>
-    <p>Show up every day. Build a routine that sticks.</p>
-    <div class="row" style="margin-top:15px"><span class="mini" id="challengeStatus">Open to join</span><button class="btn" id="joinChallenge">Join challenge</button></div>
-  </div>
-</section>
-
-<section class="page" id="challenges">
-  <div class="section-head"><div><div class="eyebrow">PUSH YOURSELF</div><h1 style="font-size:29px">Challenges</h1></div>🏁</div>
-  <div class="card challenge" style="margin-bottom:12px"><div class="row"><h2>7-day consistency</h2>🔥</div><p>Complete at least one goal every day for seven days.</p><div class="row" style="margin-top:15px"><span class="mini">Consistency · Beginner</span><button class="btn" data-join="consistency">Join</button></div></div>
-  <div class="card" style="margin-bottom:12px"><div class="row"><h2>Move 30 minutes</h2>⚡</div><p>Get 30 minutes of movement on five days this week.</p><div class="row" style="margin-top:15px"><span class="mini">Movement · Beginner</span><button class="btn secondary" data-join="move">Join</button></div></div>
-  <div class="card"><div class="row"><h2>Weekend reset</h2>🌿</div><p>Stretch, walk and prepare for a strong week ahead.</p><div class="row" style="margin-top:15px"><span class="mini">Recovery · Easy</span><button class="btn secondary" data-join="reset">Join</button></div></div>
-  <p class="mini" style="margin-top:12px">Challenges are currently personal demo challenges. Online group participation is not connected yet.</p>
-</section>
-
-<section class="page" id="leaderboard">
-  <div class="eyebrow">A LITTLE FRIENDLY COMPETITION</div><h1 style="font-size:29px">Leaderboard</h1>
-  <div class="tabs" style="margin:18px 0"><button class="active">This week</button><button disabled>Friends</button><button disabled>Global</button></div>
-  <div class="card">
-    <div class="leader-row"><div class="rank">01</div><div style="font-size:25px">🥇</div><div class="person"><strong>Alex</strong><small>Consistency king</small></div><div class="score">650 pts</div></div>
-    <div class="leader-row"><div class="rank">02</div><div style="font-size:25px">🥈</div><div class="person"><strong>Jordan</strong><small>Early riser</small></div><div class="score">520 pts</div></div>
-    <div class="leader-row"><div class="rank">03</div><div style="font-size:25px">🥉</div><div class="person"><strong>Taylor</strong><small>On a roll</small></div><div class="score">410 pts</div></div>
-    <div class="leader-row you" style="margin-top:10px;border:0"><div class="rank">YOU</div><div style="font-size:23px">🌟</div><div class="person"><strong id="leaderName">You</strong><small>Your local score</small></div><div class="score" id="leaderPoints">0 pts</div></div>
-  </div>
-  <p class="mini">Other players and scores are sample data, not real users.</p>
-</section>
-
-<section class="page" id="profile">
-  <div class="eyebrow">YOUR PACE</div><h1 style="font-size:29px">Profile</h1>
-  <div class="card" style="margin:18px 0">
-    <div class="row"><div class="avatar" style="width:54px;height:54px;font-size:20px" id="profileAvatar">Y</div><div style="flex:1"><h2 id="profileName">Your profile</h2><p>Consistency over perfection.</p></div><span>✏️</span></div>
-    <label class="mini" for="nameInput" style="display:block;margin:18px 0 7px">DISPLAY NAME</label><input id="nameInput" maxlength="20" placeholder="Enter your name">
-    <button class="btn full" id="saveName" style="margin-top:10px">Save name</button>
-  </div>
-  <div class="plus">
-    <div class="eyebrow" style="color:var(--lime)">LEVEL UP YOUR ROUTINE</div><h1 style="font-size:27px;margin-top:9px">PACE PLUS</h1><p>More insight. More ways to stay consistent.</p>
-    <ul><li>Advanced progress and trends</li><li>Custom challenges with friends</li><li>Personalised training plans</li><li>Extra themes and badges</li></ul>
-    <div class="row"><strong style="font-size:22px">$4.99 <small class="mini">/ month · proposed price</small></strong><span class="pill">COMING LATER</span></div>
-    <button class="btn secondary full" disabled style="margin-top:15px;opacity:.65">Premium isn't available yet</button>
-  </div>
-  <div class="section card"><h3>App settings</h3><p>Progress is saved on this device only.</p><button class="btn secondary full" id="reset" style="margin-top:12px">Reset demo progress</button></div>
-</section>
+:root{--bg:#101b19;--panel:#192824;--panel2:#223831;--lime:#b7f36b;--mint:#55c7a5;--white:#f3f5f1;--muted:#9aaca4;--line:#30463e;--orange:#ffb36b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% -10%,#28463b 0,transparent 38%),var(--bg);color:var(--white);font:15px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+.wrap{max-width:1050px;margin:auto;padding:24px 22px 60px}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:3px;font-size:22px}.mark{width:34px;height:34px;border-radius:11px;background:var(--lime);color:#142019;display:grid;place-items:center;font-weight:1000;font-size:20px}.pill{border:1px solid var(--line);color:var(--muted);border-radius:99px;padding:8px 13px;font-size:12px}
+h1{font-size:clamp(32px,6vw,54px);line-height:1.03;letter-spacing:-2px;margin:8px 0 12px}.lime{color:var(--lime)}.sub{color:var(--muted);max-width:600px}.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;margin-bottom:20px}.hero-main,.score,.card{background:linear-gradient(145deg,#1b2d27,#15231f);border:1px solid var(--line);border-radius:24px;padding:25px}.eyebrow{color:var(--mint);font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase}.score{display:flex;flex-direction:column;justify-content:space-between;min-height:210px;background:linear-gradient(145deg,#263e33,#182a23)}.score strong{font-size:58px;line-height:1;color:var(--lime);letter-spacing:-3px}.score small{color:var(--muted)}.section-head{display:flex;align-items:end;justify-content:space-between;margin:28px 0 13px}.section-head h2{margin:0;font-size:21px;letter-spacing:-.5px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card{padding:20px}.goal{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.goal:last-child{border:0}.check{width:25px;height:25px;border-radius:8px;border:1px solid #587267;background:#17251f;display:grid;place-items:center;color:#142019;cursor:pointer;flex-shrink:0}.check.done{background:var(--lime);border-color:var(--lime)}.goal span{flex:1}.goal small{display:block;color:var(--muted);font-size:12px}.tag{font-size:11px;color:var(--mint);background:#1c3a30;padding:5px 8px;border-radius:99px}.bar{height:8px;background:#30443c;border-radius:99px;overflow:hidden;margin:12px 0}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--mint),var(--lime));width:0%;border-radius:99px;transition:.2s}.challenge{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}.challenge:last-child{border:0}.challenge b{display:block}.challenge small{color:var(--muted)}button{border:0;border-radius:12px;background:var(--lime);color:#142019;padding:11px 15px;font-weight:800;cursor:pointer}button.secondary{background:#2c443a;color:var(--white);border:1px solid #456054}button:active{transform:scale(.98)}input,select{width:100%;background:#101d19;border:1px solid var(--line);border-radius:11px;color:var(--white);padding:12px;margin:7px 0 12px;font:inherit}.formrow{display:flex;gap:8px}.formrow>*{flex:1}.muted{color:var(--muted)}.squad-empty{padding:17px;border:1px dashed #587267;border-radius:16px;color:var(--muted)}.member{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line)}.foot{text-align:center;color:#71857b;font-size:12px;margin-top:30px}
+@media(max-width:700px){.hero,.grid{grid-template-columns:1fr}.wrap{padding:18px 14px 45px}.hero-main,.score{padding:21px}.score{min-height:160px}.top{margin-bottom:23px}}
+</style></head>
+<body><main class="wrap">
+<header class="top"><div class="brand"><div class="mark">P</div>PACE</div><div class="pill">MOVE WITH PURPOSE · BETA</div></header>
+<section class="hero"><div class="hero-main"><div class="eyebrow">YOUR DAILY MOMENTUM</div><h1>Small wins.<br><span class="lime">Real progress.</span></h1><p class="sub">Build consistency, find your people and get back on track — one day at a time.</p><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:23px"><button onclick="document.querySelector('#daily').scrollIntoView({behavior:'smooth'})">Start today's goals</button><button class="secondary" onclick="document.querySelector('#squad').scrollIntoView({behavior:'smooth'})">Open your squad</button></div></div>
+<div class="score"><div><div class="eyebrow">YOUR PACE SCORE</div><small>Points earned on this device</small></div><strong id="points">0</strong><div><span class="lime" id="streak">0 day streak</span><small> · Every comeback counts.</small></div></div></section>
+<div class="section-head" id="daily"><h2>Today's wins</h2><span class="tag" id="progress-label">0 / 4 complete</span></div>
+<section class="grid"><div class="card"><div class="eyebrow">DAILY CHECK-IN</div><div id="goals"></div><div class="bar"><i id="progress"></i></div><small class="muted">Complete any goal to build momentum. No perfect days required.</small></div>
+<div class="card"><div class="eyebrow">YOUR COMEBACK PLAN</div><h2 style="margin:9px 0">Missed a day?</h2><p class="muted">No guilt and no starting over. Choose one small action and restart your momentum.</p><div class="challenge"><div><b id="comeback-title">A 5-minute reset</b><small id="comeback-desc">Take a short walk or stretch.</small></div><span class="tag">+10 pts</span></div><button class="secondary" onclick="comeback()">Complete comeback</button></div></section>
+<div class="section-head"><h2>Challenges that fit your day</h2><span class="muted">Pick your time</span></div>
+<section class="card"><div class="formrow"><select id="time" onchange="updateChallenge()"><option value="5">5 minutes · Easy start</option><option value="15" selected>15 minutes · Standard</option><option value="30">30 minutes · Go further</option></select><select id="level" onchange="updateChallenge()"><option>Beginner</option><option selected>Intermediate</option><option>Advanced</option></select></div><div class="challenge"><div><b id="challenge-title">15-minute movement break</b><small id="challenge-desc">A brisk walk, easy cycle or mobility flow.</small></div><span class="tag">YOUR PACE</span></div></section>
+<div class="section-head" id="squad"><h2>Squad challenges</h2><span class="tag">BETA PREVIEW</span></div>
+<section class="card"><div class="eyebrow">BETTER TOGETHER</div><h2 style="margin:8px 0">Your people. Your pace.</h2><p class="muted">Create a small squad and set a shared weekly goal. This preview saves on this device; inviting real friends and syncing progress needs an online backend.</p><div id="squad-area"></div><div class="formrow" style="margin-top:12px"><input id="squad-name" placeholder="Give your squad a name" aria-label="Squad name"><button onclick="createSquad()">Create squad</button></div></section>
+<p class="foot">PACE · Small daily wins. Real progress. · Your current progress is stored on this device only.</p>
 </main>
-<footer>PACE · BUILD YOUR BEST SELF<br>Prototype v1 · Keep showing up.</footer>
-</div>
-
-<nav class="nav" aria-label="Main navigation">
-<button class="active" data-page="today"><span>⌂</span>Today</button>
-<button data-page="challenges"><span>⚑</span>Challenges</button>
-<button data-page="leaderboard"><span>🏆</span>Ranks</button>
-<button data-page="profile"><span>◉</span>Profile</button>
-</nav>
-<div class="toast" id="toast" role="status"></div>
 <script>
-const KEY='pace-v1-state';
-const todayKey=()=>new Date().toLocaleDateString('en-CA');
-const fresh=()=>({date:todayKey(),done:{workout:false,steps:false,stretch:false,water:false},streak:0,lastComplete:null,name:'You',joined:[]});
-let state;
-try{state=JSON.parse(localStorage.getItem(KEY))||fresh()}catch{state=fresh()}
-if(!state.done || state.date!==todayKey()){state.date=todayKey();state.done={workout:false,steps:false,stretch:false,water:false}}
-function save(){localStorage.setItem(KEY,JSON.stringify(state));render()}
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1700)}
-function render(){
- const count=Object.values(state.done).filter(Boolean).length,pts=count*25,pct=count*25;
- document.getElementById('streak').textContent=state.streak+' 🔥';
- document.getElementById('points').textContent=pts;
- document.getElementById('completed').textContent=count+'/4';
- document.getElementById('percent').textContent=pct+'%';
- document.getElementById('progress').style.width=pct+'%';
- document.querySelectorAll('[data-goal]').forEach(b=>{const yes=!!state.done[b.dataset.goal];b.classList.toggle('done',yes);b.setAttribute('aria-pressed',yes?'true':'false')});
- document.getElementById('leaderPoints').textContent=pts+' pts';
- document.getElementById('leaderName').textContent=state.name||'You';
- document.getElementById('profileName').textContent=state.name||'Your profile';
- document.getElementById('avatar').textContent=(state.name||'Y').charAt(0).toUpperCase();
- document.getElementById('profileAvatar').textContent=(state.name||'Y').charAt(0).toUpperCase();
- document.getElementById('nameInput').value=state.name==='You'?'':state.name;
- const joined=state.joined.includes('consistency');
- document.getElementById('challengeStatus').textContent=joined?'You joined — keep showing up':'Open to join';
- document.getElementById('joinChallenge').textContent=joined?'Joined ✓':'Join challenge';
- document.getElementById('dateLabel').textContent=new Date().toLocaleDateString(undefined,{weekday:'long',month:'short',day:'numeric'}).toUpperCase();
-}
-document.querySelectorAll('[data-goal]').forEach(b=>b.addEventListener('click',()=>{
- const k=b.dataset.goal;state.done[k]=!state.done[k];
- if(Object.values(state.done).some(Boolean) && state.lastComplete!==todayKey()){
-   const yesterday=new Date();yesterday.setDate(yesterday.getDate()-1);
-   const y=yesterday.toLocaleDateString('en-CA');
-   state.streak=state.lastComplete===y?state.streak+1:Math.max(1,state.streak);
-   state.lastComplete=todayKey();
- }
- save();showToast(state.done[k]?'+25 PACE points earned':'Goal unchecked');
-}));
-document.getElementById('joinChallenge').addEventListener('click',()=>join('consistency'));
-document.querySelectorAll('[data-join]').forEach(b=>b.addEventListener('click',()=>join(b.dataset.join)));
-function join(id){if(state.joined.includes(id)){showToast('You have already joined');return}state.joined.push(id);save();showToast('Challenge joined!')}
-document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>{
- document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x===b));
- document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===b.dataset.page));
- window.scrollTo({top:0,behavior:'smooth'});
-}));
-document.getElementById('saveName').addEventListener('click',()=>{const n=document.getElementById('nameInput').value.trim();if(!n){showToast('Enter a display name');return}state.name=n;save();showToast('Profile updated')});
-document.getElementById('reset').addEventListener('click',()=>{if(confirm('Reset all PACE demo progress on this device?')){state=fresh();save();showToast('Progress reset')}});
-render();
-if('serviceWorker' in navigator && location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-</script>
-</body>
-</html>
+const defaults=[["Move your body","Workout or active movement"],["Get your steps","Aim for 8,000 steps"],["Stretch","Take 5 minutes to reset"],["Hydrate","Drink water throughout the day"]];
+let data=JSON.parse(localStorage.getItem('pace-v2')||'{}');data.done=data.done||[];data.points=data.points||0;data.streak=data.streak||0;data.squad=data.squad||null;
+function save(){localStorage.setItem('pace-v2',JSON.stringify(data));render()}
+function render(){document.getElementById('points').textContent=data.points;document.getElementById('streak').textContent=data.streak+' day streak';document.getElementById('progress-label').textContent=data.done.length+' / 4 complete';document.getElementById('progress').style.width=(data.done.length/4*100)+'%';document.getElementById('goals').innerHTML=defaults.map((g,i)=>`<div class="goal"><button class="check ${data.done.includes(i)?'done':''}" aria-label="Toggle ${g[0]}" onclick="toggle(${i})">${data.done.includes(i)?'✓':''}</button><span><b>${g[0]}</b><small>${g[1]}</small></span><span class="tag">+25</span></div>`).join('');renderSquad()}
+function toggle(i){if(data.done.includes(i)){data.done=data.done.filter(x=>x!==i);data.points=Math.max(0,data.points-25)}else{data.done.push(i);data.points+=25;if(data.done.length===4)data.streak+=1}save()}
+function comeback(){data.points+=10;data.streak=0;save();alert('Nice work. Your comeback counts. +10 points!')}
+function updateChallenge(){let t=+document.getElementById('time').value,l=document.getElementById('level').value;let title=t+'-minute '+(l==='Beginner'?'gentle start':l==='Advanced'?'training push':'movement break');let desc=t===5?'Walk around the block or stretch.':t===15?'Try a brisk walk, easy cycle or mobility flow.':'Combine cardio and strength at a pace that suits you.';document.getElementById('challenge-title').textContent=title;document.getElementById('challenge-desc').textContent=desc}
+function createSquad(){let n=document.getElementById('squad-name').value.trim();if(!n)return alert('Add a squad name first.');data.squad={name:n,goal:5,done:0};document.getElementById('squad-name').value='';save()}
+function addSquadWin(){if(data.squad&&data.squad.done<data.squad.goal){data.squad.done++;data.points+=5;save()}}
+function renderSquad(){let el=document.getElementById('squad-area');if(!data.squad){el.innerHTML='<div class="squad-empty">No squad yet. Create one below to preview your shared weekly challenge.</div>';return}el.innerHTML=`<div class="challenge"><div><b>${escapeHtml(data.squad.name)}</b><small>Weekly squad target · 5 workouts</small></div><span class="tag">${data.squad.done}/5</span></div><div class="bar"><i style="width:${data.squad.done/5*100}%"></i></div><div class="member"><span>You · contribution</span><b>${data.squad.done} workouts</b></div><button class="secondary" onclick="addSquadWin()">Add a squad workout · +5 pts</button><p class="muted" style="font-size:12px">Demo only: squad progress is local and isn't shared with other users yet.</p>`}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+render();updateChallenge();if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+</script></body></html>

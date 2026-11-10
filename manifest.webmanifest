@@ -1,11 +1,10 @@
 {
-  "name": "PACE \u2014 Build Your Best Self",
+  "name": "PACE",
   "short_name": "PACE",
-  "description": "Daily movement, goals and fitness challenges.",
-  "start_url": "./",
+  "start_url": ".",
   "display": "standalone",
-  "background_color": "#101a19",
-  "theme_color": "#101a19",
+  "background_color": "#101b19",
+  "theme_color": "#101b19",
   "icons": [
     {
       "src": "icon.svg",

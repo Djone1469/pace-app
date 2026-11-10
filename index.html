@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101a19">
+<meta name="description" content="PACE — build your best self with daily movement, challenges and consistency.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<title>PACE — Build your best self</title>
+<style>
+:root{--bg:#101a19;--panel:#1b2925;--panel2:#24352e;--line:#34483e;--text:#f5f8f4;--muted:#a9b9af;--lime:#b8f36b;--lime-dark:#1a2b17;--orange:#ffb56b;--radius:20px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input{font:inherit}button{cursor:pointer}
+.app{max-width:520px;margin:0 auto;min-height:100svh;padding:env(safe-area-inset-top) 18px calc(92px + env(safe-area-inset-bottom))}
+header{display:flex;align-items:center;justify-content:space-between;padding:20px 0 24px}
+.brand{display:flex;align-items:center;gap:10px;font-size:23px;font-weight:900;letter-spacing:1.5px}
+.logo{height:38px;width:38px;border-radius:13px;background:var(--lime);color:#142014;display:grid;place-items:center;font-size:21px}
+.avatar{height:38px;width:38px;border-radius:50%;background:#30483a;color:var(--lime);display:grid;place-items:center;font-weight:800;border:1px solid #49634f}
+.eyebrow{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:1.5px;font-weight:700}
+h1{font-size:32px;line-height:1.08;letter-spacing:-1.2px;margin:8px 0}
+h2{font-size:20px;margin:0;letter-spacing:-.4px}h3{font-size:16px;margin:0}
+p{margin:5px 0;color:var(--muted)}
+.hero{padding:22px;border-radius:26px;background:linear-gradient(135deg,#263c2d,#172722);border:1px solid #3d5842;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;background:#b8f36b12;right:-65px;top:-60px}
+.hero-top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
+.pill{border:1px solid #52684b;color:var(--lime);border-radius:99px;padding:5px 10px;font-size:11px;font-weight:800;letter-spacing:.7px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:22px;position:relative;z-index:1}
+.stat{background:#1020198a;border:1px solid #ffffff12;border-radius:15px;padding:12px 10px}
+.stat strong{display:block;font-size:23px;letter-spacing:-.7px}.stat span{font-size:11px;color:var(--muted)}
+.section{margin-top:25px}.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.progress-wrap{height:9px;background:#2d4037;border-radius:99px;overflow:hidden;margin-top:12px}
+.progress{height:100%;width:0;background:var(--lime);border-radius:99px;transition:width .25s}
+.goal-list{display:grid;gap:9px}
+.goal{display:flex;align-items:center;gap:13px;padding:14px;background:var(--panel);border:1px solid var(--line);border-radius:17px}
+.goal-icon{width:42px;height:42px;border-radius:13px;background:#2b4033;display:grid;place-items:center;font-size:21px;flex:none}
+.goal-info{flex:1;min-width:0}.goal-info strong{display:block;font-size:14px}.goal-info small{color:var(--muted);font-size:12px}
+.check{width:27px;height:27px;border-radius:50%;border:1.5px solid #718477;background:transparent;color:#162016;font-weight:900;flex:none}
+.check.done{background:var(--lime);border-color:var(--lime)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:19px;padding:17px}
+.challenge{background:linear-gradient(135deg,#293d30,#1a2924);border-color:#405b42}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.btn{border:0;border-radius:13px;padding:12px 16px;background:var(--lime);color:#142014;font-weight:850}
+.btn.secondary{background:#30443a;color:var(--text);border:1px solid var(--line)}
+.btn.full{width:100%}
+.btn:active,.nav button:active{transform:scale(.98)}
+.mini{font-size:12px;color:var(--muted)}
+.tabs{display:flex;gap:7px;background:#14211c;padding:5px;border:1px solid var(--line);border-radius:14px}
+.tabs button{flex:1;border:0;background:transparent;color:var(--muted);padding:9px 5px;border-radius:10px;font-size:12px;font-weight:750}
+.tabs button.active{background:var(--lime);color:#172117}
+.page{display:none}.page.active{display:block}
+.leader-row{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.rank{width:28px;color:var(--lime);font-weight:900}.person{flex:1}.person strong{display:block}.person small{color:var(--muted)}
+.score{font-weight:850;font-variant-numeric:tabular-nums}
+.you{background:#263b2b;border:1px solid #4b6843;border-radius:14px;padding:12px}
+.plus{background:linear-gradient(145deg,#283c2e,#1b2924);border:1px solid #60764b;border-radius:22px;padding:20px}
+.plus ul{padding-left:19px;color:var(--muted);line-height:2}
+input{width:100%;background:#101d18;border:1px solid var(--line);border-radius:12px;color:var(--text);padding:12px;outline:none}
+input:focus{border-color:var(--lime)}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);display:flex;justify-content:space-around;gap:4px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:#111d19f2;backdrop-filter:blur(18px);border-top:1px solid var(--line);z-index:10}
+.nav button{flex:1;border:0;background:transparent;color:var(--muted);padding:7px 2px;font-size:10px;font-weight:750;display:grid;gap:4px;place-items:center}
+.nav button span{font-size:19px}.nav button.active{color:var(--lime)}
+.toast{position:fixed;left:50%;bottom:100px;transform:translate(-50%,15px);background:var(--lime);color:#172117;padding:10px 16px;border-radius:99px;font-weight:800;font-size:13px;opacity:0;pointer-events:none;transition:.2s;z-index:20;white-space:nowrap}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+footer{text-align:center;color:#75877b;font-size:11px;margin:30px 0 10px}
+@media(min-width:600px){body{padding:20px 0}.app{border:1px solid #293b33;border-radius:28px;min-height:calc(100svh - 40px);padding-bottom:35px}.nav{position:sticky;transform:none;left:auto;margin:-75px auto 0;border:1px solid var(--line);border-radius:18px;width:min(484px,calc(100% - 36px));bottom:15px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="brand"><div class="logo">↗</div> PACE</div>
+  <div class="avatar" id="avatar">Y</div>
+</header>
+
+<main>
+<section class="page active" id="today">
+  <div class="hero">
+    <div class="hero-top"><div><div class="eyebrow" id="dateLabel">YOUR DAILY CHECK-IN</div><h1>Make today<br>count.</h1><p>Small wins. Big progress.</p></div><div class="pill">PACE CLUB</div></div>
+    <div class="stats">
+      <div class="stat"><strong id="streak">0 🔥</strong><span>DAY STREAK</span></div>
+      <div class="stat"><strong id="points">0</strong><span>TODAY'S POINTS</span></div>
+      <div class="stat"><strong id="completed">0/4</strong><span>GOALS DONE</span></div>
+    </div>
+    <div class="row" style="margin-top:19px"><strong style="font-size:13px">Daily progress</strong><strong id="percent" style="color:var(--lime)">0%</strong></div>
+    <div class="progress-wrap"><div class="progress" id="progress"></div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><h2>Today's goals</h2><span class="mini">25 PTS EACH</span></div>
+    <div class="goal-list" id="goalList">
+      <div class="goal"><div class="goal-icon">🏋️</div><div class="goal-info"><strong>Complete a workout</strong><small>Move for at least 30 minutes</small></div><button class="check" data-goal="workout" aria-label="Complete workout">✓</button></div>
+      <div class="goal"><div class="goal-icon">👟</div><div class="goal-info"><strong>Reach 8,000 steps</strong><small>Get moving throughout the day</small></div><button class="check" data-goal="steps" aria-label="Complete steps">✓</button></div>
+      <div class="goal"><div class="goal-icon">🧘</div><div class="goal-info"><strong>Stretch</strong><small>10 minutes of stretching</small></div><button class="check" data-goal="stretch" aria-label="Complete stretching">✓</button></div>
+      <div class="goal"><div class="goal-icon">💧</div><div class="goal-info"><strong>Hydration goal</strong><small>Reach your personal water goal</small></div><button class="check" data-goal="water" aria-label="Complete hydration">✓</button></div>
+    </div>
+  </div>
+  <div class="section card challenge">
+    <div class="row"><div><div class="eyebrow">THIS WEEK</div><h2 style="margin-top:5px">7-day consistency</h2></div><div style="font-size:28px">🏆</div></div>
+    <p>Show up every day. Build a routine that sticks.</p>
+    <div class="row" style="margin-top:15px"><span class="mini" id="challengeStatus">Open to join</span><button class="btn" id="joinChallenge">Join challenge</button></div>
+  </div>
+</section>
+
+<section class="page" id="challenges">
+  <div class="section-head"><div><div class="eyebrow">PUSH YOURSELF</div><h1 style="font-size:29px">Challenges</h1></div>🏁</div>
+  <div class="card challenge" style="margin-bottom:12px"><div class="row"><h2>7-day consistency</h2>🔥</div><p>Complete at least one goal every day for seven days.</p><div class="row" style="margin-top:15px"><span class="mini">Consistency · Beginner</span><button class="btn" data-join="consistency">Join</button></div></div>
+  <div class="card" style="margin-bottom:12px"><div class="row"><h2>Move 30 minutes</h2>⚡</div><p>Get 30 minutes of movement on five days this week.</p><div class="row" style="margin-top:15px"><span class="mini">Movement · Beginner</span><button class="btn secondary" data-join="move">Join</button></div></div>
+  <div class="card"><div class="row"><h2>Weekend reset</h2>🌿</div><p>Stretch, walk and prepare for a strong week ahead.</p><div class="row" style="margin-top:15px"><span class="mini">Recovery · Easy</span><button class="btn secondary" data-join="reset">Join</button></div></div>
+  <p class="mini" style="margin-top:12px">Challenges are currently personal demo challenges. Online group participation is not connected yet.</p>
+</section>
+
+<section class="page" id="leaderboard">
+  <div class="eyebrow">A LITTLE FRIENDLY COMPETITION</div><h1 style="font-size:29px">Leaderboard</h1>
+  <div class="tabs" style="margin:18px 0"><button class="active">This week</button><button disabled>Friends</button><button disabled>Global</button></div>
+  <div class="card">
+    <div class="leader-row"><div class="rank">01</div><div style="font-size:25px">🥇</div><div class="person"><strong>Alex</strong><small>Consistency king</small></div><div class="score">650 pts</div></div>
+    <div class="leader-row"><div class="rank">02</div><div style="font-size:25px">🥈</div><div class="person"><strong>Jordan</strong><small>Early riser</small></div><div class="score">520 pts</div></div>
+    <div class="leader-row"><div class="rank">03</div><div style="font-size:25px">🥉</div><div class="person"><strong>Taylor</strong><small>On a roll</small></div><div class="score">410 pts</div></div>
+    <div class="leader-row you" style="margin-top:10px;border:0"><div class="rank">YOU</div><div style="font-size:23px">🌟</div><div class="person"><strong id="leaderName">You</strong><small>Your local score</small></div><div class="score" id="leaderPoints">0 pts</div></div>
+  </div>
+  <p class="mini">Other players and scores are sample data, not real users.</p>
+</section>
+
+<section class="page" id="profile">
+  <div class="eyebrow">YOUR PACE</div><h1 style="font-size:29px">Profile</h1>
+  <div class="card" style="margin:18px 0">
+    <div class="row"><div class="avatar" style="width:54px;height:54px;font-size:20px" id="profileAvatar">Y</div><div style="flex:1"><h2 id="profileName">Your profile</h2><p>Consistency over perfection.</p></div><span>✏️</span></div>
+    <label class="mini" for="nameInput" style="display:block;margin:18px 0 7px">DISPLAY NAME</label><input id="nameInput" maxlength="20" placeholder="Enter your name">
+    <button class="btn full" id="saveName" style="margin-top:10px">Save name</button>
+  </div>
+  <div class="plus">
+    <div class="eyebrow" style="color:var(--lime)">LEVEL UP YOUR ROUTINE</div><h1 style="font-size:27px;margin-top:9px">PACE PLUS</h1><p>More insight. More ways to stay consistent.</p>
+    <ul><li>Advanced progress and trends</li><li>Custom challenges with friends</li><li>Personalised training plans</li><li>Extra themes and badges</li></ul>
+    <div class="row"><strong style="font-size:22px">$4.99 <small class="mini">/ month · proposed price</small></strong><span class="pill">COMING LATER</span></div>
+    <button class="btn secondary full" disabled style="margin-top:15px;opacity:.65">Premium isn't available yet</button>
+  </div>
+  <div class="section card"><h3>App settings</h3><p>Progress is saved on this device only.</p><button class="btn secondary full" id="reset" style="margin-top:12px">Reset demo progress</button></div>
+</section>
+</main>
+<footer>PACE · BUILD YOUR BEST SELF<br>Prototype v1 · Keep showing up.</footer>
+</div>
+
+<nav class="nav" aria-label="Main navigation">
+<button class="active" data-page="today"><span>⌂</span>Today</button>
+<button data-page="challenges"><span>⚑</span>Challenges</button>
+<button data-page="leaderboard"><span>🏆</span>Ranks</button>
+<button data-page="profile"><span>◉</span>Profile</button>
+</nav>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const KEY='pace-v1-state';
+const todayKey=()=>new Date().toLocaleDateString('en-CA');
+const fresh=()=>({date:todayKey(),done:{workout:false,steps:false,stretch:false,water:false},streak:0,lastComplete:null,name:'You',joined:[]});
+let state;
+try{state=JSON.parse(localStorage.getItem(KEY))||fresh()}catch{state=fresh()}
+if(!state.done || state.date!==todayKey()){state.date=todayKey();state.done={workout:false,steps:false,stretch:false,water:false}}
+function save(){localStorage.setItem(KEY,JSON.stringify(state));render()}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1700)}
+function render(){
+ const count=Object.values(state.done).filter(Boolean).length,pts=count*25,pct=count*25;
+ document.getElementById('streak').textContent=state.streak+' 🔥';
+ document.getElementById('points').textContent=pts;
+ document.getElementById('completed').textContent=count+'/4';
+ document.getElementById('percent').textContent=pct+'%';
+ document.getElementById('progress').style.width=pct+'%';
+ document.querySelectorAll('[data-goal]').forEach(b=>{const yes=!!state.done[b.dataset.goal];b.classList.toggle('done',yes);b.setAttribute('aria-pressed',yes?'true':'false')});
+ document.getElementById('leaderPoints').textContent=pts+' pts';
+ document.getElementById('leaderName').textContent=state.name||'You';
+ document.getElementById('profileName').textContent=state.name||'Your profile';
+ document.getElementById('avatar').textContent=(state.name||'Y').charAt(0).toUpperCase();
+ document.getElementById('profileAvatar').textContent=(state.name||'Y').charAt(0).toUpperCase();
+ document.getElementById('nameInput').value=state.name==='You'?'':state.name;
+ const joined=state.joined.includes('consistency');
+ document.getElementById('challengeStatus').textContent=joined?'You joined — keep showing up':'Open to join';
+ document.getElementById('joinChallenge').textContent=joined?'Joined ✓':'Join challenge';
+ document.getElementById('dateLabel').textContent=new Date().toLocaleDateString(undefined,{weekday:'long',month:'short',day:'numeric'}).toUpperCase();
+}
+document.querySelectorAll('[data-goal]').forEach(b=>b.addEventListener('click',()=>{
+ const k=b.dataset.goal;state.done[k]=!state.done[k];
+ if(Object.values(state.done).some(Boolean) && state.lastComplete!==todayKey()){
+   const yesterday=new Date();yesterday.setDate(yesterday.getDate()-1);
+   const y=yesterday.toLocaleDateString('en-CA');
+   state.streak=state.lastComplete===y?state.streak+1:Math.max(1,state.streak);
+   state.lastComplete=todayKey();
+ }
+ save();showToast(state.done[k]?'+25 PACE points earned':'Goal unchecked');
+}));
+document.getElementById('joinChallenge').addEventListener('click',()=>join('consistency'));
+document.querySelectorAll('[data-join]').forEach(b=>b.addEventListener('click',()=>join(b.dataset.join)));
+function join(id){if(state.joined.includes(id)){showToast('You have already joined');return}state.joined.push(id);save();showToast('Challenge joined!')}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>{
+ document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x===b));
+ document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===b.dataset.page));
+ window.scrollTo({top:0,behavior:'smooth'});
+}));
+document.getElementById('saveName').addEventListener('click',()=>{const n=document.getElementById('nameInput').value.trim();if(!n){showToast('Enter a display name');return}state.name=n;save();showToast('Profile updated')});
+document.getElementById('reset').addEventListener('click',()=>{if(confirm('Reset all PACE demo progress on this device?')){state=fresh();save();showToast('Progress reset')}});
+render();
+if('serviceWorker' in navigator && location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+</script>
+</body>
+</html>
